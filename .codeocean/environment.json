@@ -1,0 +1,8 @@
+{
+	"version": 1,
+	"base_image": "codeocean/ubuntu-desktop-igv-fiji-mambaforge:23.1.0-4-python3.10.12-fiji20231107-1617-firefox120.0-igv2.16.1-guacamole1.5.2-ubuntu22.04",
+	"options": {
+		"registry_host_arg": true,
+		"git_ask_pass": true
+	}
+}

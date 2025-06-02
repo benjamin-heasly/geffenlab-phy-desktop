@@ -1,4 +1,4 @@
-# hash:sha256:3547bad8a3910fd25f904cdd99c09eedfbb625f37f08213e1e795d4567a021ac
+# hash:sha256:71adfc6986c047442f10888cbcbe7dbad9dffd62cf7dc448cf3ec083309419f8
 ARG REGISTRY_HOST
 FROM $REGISTRY_HOST/codeocean/ubuntu-desktop-igv-fiji-mambaforge:23.1.0-4-python3.10.12-fiji20231107-1617-firefox120.0-igv2.16.1-guacamole1.5.2-ubuntu22.04
 
@@ -9,26 +9,26 @@ ARG GIT_ACCESS_TOKEN
 COPY git-askpass /
 
 RUN mamba install -y \
-        cython \
-        dask \
-        h5py \
-        joblib \
-        matplotlib \
-        numpy \
-        pillow \
+        cython==3.1.1 \
+        dask==2025.5.1 \
+        h5py==3.13.0 \
+        joblib==1.4.1 \
+        matplotlib==3.10.3 \
+        numpy==2.2.6 \
+        pillow==11.2.1 \
         pip==25.1.1 \
-        pyopengl \
-        pyqt \
-        pyqtwebengine \
-        pytest \
-        python==3.11 \
-        qtconsole \
-        requests \
-        responses \
-        scikit-learn \
-        scipy \
-        traitlets \
+        pyopengl==3.1.9 \
+        pyqt==5.15.11 \
+        pyqtwebengine==5.15.11 \
+        pytest==8.3.5 \
+        python==3.11.0 \
+        qtconsole==5.6.1 \
+        requests==2.31.0 \
+        responses==0.25.7 \
+        scikit-learn==1.6.1 \
+        scipy==1.15.2 \
+        traitlets==5.13.0 \
     && mamba clean -ya
 
 RUN pip install -U --no-cache-dir \
-    -e git+https://github.com/cortex-lab/phy.git#egg=phy
+    -e git+https://github.com/cortex-lab/phy.git@7a2494be37a47f26f1f87e1ad3e022823f0f3dd1#egg=phy

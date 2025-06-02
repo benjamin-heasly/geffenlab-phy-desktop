@@ -9,70 +9,88 @@
 		"mamba": {
 			"packages": [
 				{
-					"name": "cython"
+					"name": "cython",
+					"version": "3.1.1"
 				},
 				{
-					"name": "dask"
+					"name": "dask",
+					"version": "2025.5.1"
 				},
 				{
-					"name": "h5py"
+					"name": "h5py",
+					"version": "3.13.0"
 				},
 				{
-					"name": "joblib"
+					"name": "joblib",
+					"version": "1.4.1"
 				},
 				{
-					"name": "matplotlib"
+					"name": "matplotlib",
+					"version": "3.10.3"
 				},
 				{
-					"name": "numpy"
+					"name": "numpy",
+					"version": "2.2.6"
 				},
 				{
-					"name": "pillow"
+					"name": "pillow",
+					"version": "11.2.1"
 				},
 				{
 					"name": "pip",
 					"version": "25.1.1"
 				},
 				{
-					"name": "pyopengl"
+					"name": "pyopengl",
+					"version": "3.1.9"
 				},
 				{
-					"name": "pyqt"
+					"name": "pyqt",
+					"version": "5.15.11"
 				},
 				{
-					"name": "pyqtwebengine"
+					"name": "pyqtwebengine",
+					"version": "5.15.11"
 				},
 				{
-					"name": "pytest"
+					"name": "pytest",
+					"version": "8.3.5"
 				},
 				{
 					"name": "python",
-					"version": "3.11"
+					"version": "3.11.0"
 				},
 				{
-					"name": "qtconsole"
+					"name": "qtconsole",
+					"version": "5.6.1"
 				},
 				{
-					"name": "requests"
+					"name": "requests",
+					"version": "2.31.0"
 				},
 				{
-					"name": "responses"
+					"name": "responses",
+					"version": "0.25.7"
 				},
 				{
-					"name": "scikit-learn"
+					"name": "scikit-learn",
+					"version": "1.6.1"
 				},
 				{
-					"name": "scipy"
+					"name": "scipy",
+					"version": "1.15.2"
 				},
 				{
-					"name": "traitlets"
+					"name": "traitlets",
+					"version": "5.13.0"
 				}
 			]
 		},
 		"pip": {
 			"packages": [
 				{
-					"name": "git+https://github.com/cortex-lab/phy.git#egg=phy"
+					"name": "git+https://github.com/cortex-lab/phy.git#egg=phy",
+					"version": "7a2494be37a47f26f1f87e1ad3e022823f0f3dd1"
 				}
 			],
 			"options": {},

@@ -1,0 +1,2 @@
+which phy
+phy --help

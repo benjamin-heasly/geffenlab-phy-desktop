@@ -6,7 +6,7 @@
 		"git_ask_pass": true
 	},
 	"installers": {
-		"conda": {
+		"mamba": {
 			"packages": [
 				{
 					"name": "cython"
@@ -31,7 +31,7 @@
 				},
 				{
 					"name": "pip",
-					"version": "23.1.2"
+					"version": "25.1.1"
 				},
 				{
 					"name": "pyopengl"
@@ -47,7 +47,7 @@
 				},
 				{
 					"name": "python",
-					"version": "3.10.12"
+					"version": "3.11"
 				},
 				{
 					"name": "qtconsole"
@@ -68,6 +68,15 @@
 					"name": "traitlets"
 				}
 			]
+		},
+		"pip": {
+			"packages": [
+				{
+					"name": "git+https://github.com/cortex-lab/phy.git#egg=phy"
+				}
+			],
+			"options": {},
+			"pre_install_options": {}
 		}
 	}
 }

@@ -4,5 +4,67 @@
 	"options": {
 		"registry_host_arg": true,
 		"git_ask_pass": true
+	},
+	"installers": {
+		"conda": {
+			"packages": [
+				{
+					"name": "cython"
+				},
+				{
+					"name": "dask"
+				},
+				{
+					"name": "h5py"
+				},
+				{
+					"name": "joblib"
+				},
+				{
+					"name": "matplotlib"
+				},
+				{
+					"name": "numpy"
+				},
+				{
+					"name": "pillow"
+				},
+				{
+					"name": "pip",
+					"version": "23.1.2"
+				},
+				{
+					"name": "pyopengl"
+				},
+				{
+					"name": "pyqt"
+				},
+				{
+					"name": "pyqtwebengine"
+				},
+				{
+					"name": "pytest"
+				},
+				{
+					"name": "python",
+					"version": "3.10.12"
+				},
+				{
+					"name": "qtconsole"
+				},
+				{
+					"name": "requests"
+				},
+				{
+					"name": "responses"
+				},
+				{
+					"name": "scikit-learn"
+				},
+				{
+					"name": "scipy traitlets"
+				}
+			]
+		}
 	}
 }

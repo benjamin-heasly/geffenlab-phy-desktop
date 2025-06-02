@@ -62,7 +62,10 @@
 					"name": "scikit-learn"
 				},
 				{
-					"name": "scipy traitlets"
+					"name": "scipy"
+				},
+				{
+					"name": "traitlets"
 				}
 			]
 		}

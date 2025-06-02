@@ -1,4 +1,4 @@
-# hash:sha256:5dcc00200f0fd8fe4d7ca41fd7a456723b6e3e312cbf88821bde00f47d45b73d
+# hash:sha256:77c85a768aadc3c325eb8f68c52bd7a2ef64fadad468f7970d81985ec0a0fdfe
 ARG REGISTRY_HOST
 FROM $REGISTRY_HOST/codeocean/ubuntu-desktop-igv-fiji-mambaforge:23.1.0-4-python3.10.12-fiji20231107-1617-firefox120.0-igv2.16.1-guacamole1.5.2-ubuntu22.04
 
@@ -26,5 +26,6 @@ RUN conda install -y \
         requests \
         responses \
         scikit-learn \
-        'scipy traitlets' \
+        scipy \
+        traitlets \
     && conda clean -ya

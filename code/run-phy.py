@@ -1,5 +1,5 @@
 from pathlib import Path
-from shutil import copyfile
+from shutil import copy
 import os
 import sys
 import time
@@ -11,7 +11,7 @@ from phy.apps.template import template_gui
 # If this grows complicated, use argparse: https://docs.python.org/3/library/argparse.html
 if len(sys.argv) < 2:
     print("Usage: python run-phy.py path/to/params.py [path/for/results]")
-    return
+    exit(1)
 
 params_py = sys.argv[1]
 
@@ -39,4 +39,4 @@ print(f"Found {len(changed_files)} changed files.")
 # Copy changed files to the Code Ocean "results" dir (or dir from command line).
 for f in changed_files:
     print(f"  Copying {f} to {destination}")
-    copyfile(f, destination)
+    copy(f, destination)

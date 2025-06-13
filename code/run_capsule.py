@@ -8,11 +8,17 @@ import time
 from phy_utils import copy_most_files, run_phy, copy_changed_files
 
 
-def set_up_logging():
+def set_up_logging(log_path: Path):
+    logging.root.handlers = []
+    handlers = [
+        logging.StreamHandler(sys.stdout),
+        logging.FileHandler(log_path)
+    ]
+
     logging.basicConfig(
-        stream=sys.stdout,
         level=logging.INFO,
         format="%(asctime)s [%(levelname)s] %(message)s",
+        handlers=handlers
     )
 
 
@@ -25,14 +31,14 @@ def capsule_main(
 ):
     # Locate Phy files.
     logging.info(f"Looking for input data: {data_path}")
-    logging.info(f"Looking for Phy dir matching: {phy_pattern})
+    logging.info(f"Looking for Phy dir matching: {phy_pattern}")
     phy_path = list(data_path.glob(phy_pattern))[0]
-    logging.info(f"Found Phy dir: {phy_path})
+    logging.info(f"Found Phy dir: {phy_path}")
 
     # Copy Phy files to a writable location.
     # Use symlinks for large binary files.
     phy_temp_path = Path(temp_path, phy_path.relative_to(data_path))
-    logging.info(f"Copying Phy dir: {phy_temp_path})
+    logging.info(f"Copying Phy dir: {phy_temp_path}")
     copy_most_files(phy_path, phy_temp_path, symlink_file_types)
 
     # Run Phy.
@@ -41,12 +47,14 @@ def capsule_main(
     run_phy(phy_temp_path)
 
     # Copy files that changed during curation to a results dir.
-    copy_changed_files(phy_temp_path, start_time, results_path)
+    phy_results_path = Path(results_path, phy_path.relative_to(data_path))
+    logging.info(f"Copying files that changed to: {phy_results_path}")
+    copy_changed_files(phy_temp_path, start_time, phy_results_path)
+    
+    logging.info("OK")
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
-    set_up_logging()
-
     parser = ArgumentParser(description="Launch Phy and copy files that changed during curation.")
 
     parser.add_argument(
@@ -82,8 +90,12 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     )
 
     cli_args = parser.parse_args(argv)
-    data_path = Path(cli_args.data_root)
+    
     results_path = Path(cli_args.results_root)
+    run_capsule_log = Path(results_path, "run_capsule.log")
+    set_up_logging(run_capsule_log)
+    
+    data_path = Path(cli_args.data_root)
     temp_path = Path(cli_args.temp_root)
     try:
         capsule_main(

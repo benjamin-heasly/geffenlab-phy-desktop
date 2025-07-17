@@ -2,7 +2,7 @@
 
 This sets up a Docker environment with [Phy](https://github.com/cortex-lab/phy) installed.
 
-Here's how I'm building and testing this locally:
+Here's how I'm building and testing this locally.  It's a bit rought at the moment, but it works and that is a good start.
 
 ```
 cd geffenlab-phy-desktop

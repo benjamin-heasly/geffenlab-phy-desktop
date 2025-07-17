@@ -1,0 +1,28 @@
+# This is based on environment.yml from the phy repo:
+#   https://github.com/cortex-lab/phy/blob/master/environment.yml
+# This one pegs all the dependency versions.
+name: phy2
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip=25.1.1
+  - numpy=1.26.4
+  - matplotlib=3.10.3
+  - scipy=1.15.2
+  - h5py=3.13.0
+  - pyqt=5.15.11
+  - pyopengl=3.1.6
+  - pyqtwebengine=5.15.11
+  - qtconsole=5.6.1
+  - requests=2.31.0
+  - responses=0.25.7
+  - traitlets=5.13.0
+  - dask=2025.5.1
+  - cython=3.1.1
+  - pillow=11.2.1
+  - scikit-learn=1.6.1
+  - joblib=1.4.2
+  - pip:
+    - git+https://github.com/cortex-lab/phy.git@7a2494be37a47f26f1f87e1ad3e022823f0f3dd1#egg=phy

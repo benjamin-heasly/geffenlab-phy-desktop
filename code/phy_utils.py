@@ -17,7 +17,8 @@ def copy_most_files(
 
     def copy_most(src, dst, *, follow_symlinks=True):
         src_path = Path(src)
-        if src_path.suffix in symlink_file_types:
+        dst_path = Path(dst)
+        if src_path.suffix in symlink_file_types and not dst_path.exists():
             os.symlink(src, dst)
             logging.info(f"Created symlink: {src} -> {dst}")
         else:
@@ -31,7 +32,8 @@ def run_phy(
 ):
     """Run phy itself, similar to command line: phy template-gui params.py"""
     # Disable Chromium "sandboxing" to allow running Phy as root.
-    # Currently root is the only user configured for Code Ocean Ubuntu workstation.
+    # We don't want to run as root!
+    # But misconfigured Docker containers or Code Ocean capsules might force us to be root.
     os.environ["QTWEBENGINE_CHROMIUM_FLAGS"] = "--no-sandbox"
 
     params_py = Path(phy_path, "params.py")

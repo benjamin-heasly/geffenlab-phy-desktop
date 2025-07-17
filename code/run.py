@@ -22,21 +22,22 @@ def set_up_logging(log_path: Path):
     )
 
 
-def capsule_main(
+def phy_main(
     data_path: Path,
     results_path: Path,
-    phy_pattern: str,
+    params_py_pattern: str,
     temp_path: Path,
     symlink_file_types: list[str]
 ):
     # Locate Phy files.
     logging.info(f"Looking for input data: {data_path}")
-    logging.info(f"Looking for Phy dir matching: {phy_pattern}")
-    phy_path = list(data_path.glob(phy_pattern))[0]
-    logging.info(f"Found Phy dir: {phy_path}")
+    logging.info(f"Looking for Phy params.py matching: {params_py_pattern}")
+    params_py_path = list(data_path.glob(params_py_pattern))[0]
+    logging.info(f"Found params.py dir: {params_py_path}")
 
     # Copy Phy files to a writable location.
     # Use symlinks for large binary files.
+    phy_path = params_py_path.parent
     phy_temp_path = Path(temp_path, phy_path.relative_to(data_path))
     logging.info(f"Copying Phy dir: {phy_temp_path}")
     copy_most_files(phy_path, phy_temp_path, symlink_file_types)
@@ -70,10 +71,10 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         default="/results"
     )
     parser.add_argument(
-        "--phy-pattern", "-p",
+        "--params-py-pattern", "-p",
         type=str,
-        help="Glob pattern to locate a phy/ dir (that contains params.py) within DATA_ROOT. (default: %(default)s)",
-        default="ecephys*/phy/block0_imec0.ap_recording1"
+        help="Glob pattern to locate a Phy params.py file within DATA_ROOT. (default: %(default)s)",
+        default="**/params.py"
     )
     parser.add_argument(
         "--temp-root", "-t",
@@ -92,16 +93,16 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     cli_args = parser.parse_args(argv)
     
     results_path = Path(cli_args.results_root)
-    run_capsule_log = Path(results_path, "run_capsule.log")
-    set_up_logging(run_capsule_log)
+    run_phy_log = Path(results_path, "run_phy.log")
+    set_up_logging(run_phy_log)
     
     data_path = Path(cli_args.data_root)
     temp_path = Path(cli_args.temp_root)
     try:
-        capsule_main(
+        phy_main(
             data_path=data_path,
             results_path=results_path,
-            phy_pattern=cli_args.phy_pattern,
+            params_py_pattern=cli_args.params_py_pattern,
             temp_path=temp_path,
             symlink_file_types=cli_args.symlink_file_types
         )

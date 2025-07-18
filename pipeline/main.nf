@@ -2,7 +2,7 @@ println "params: ${params}"
 
 process geffenlab_phy_desktop {
     tag 'geffenlab_phy_desktop'
-    container 'geffenlab/geffenlab-phy-desktop:local'
+    container 'ghcr.io/benjamin-heasly/geffenlab-phy-desktop:v0.0.1'
 
     input:
     path analysis_path

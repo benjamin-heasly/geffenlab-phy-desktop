@@ -29,5 +29,11 @@ docker run -ti --rm -u $(id -u):$(id -g) -v /tmp/.X11-unix:/tmp/.X11-unix -e DIS
 ```
 
 ```
+ANALYSIS_ROOT=/home/ninjaben/codin/geffen-lab-data/analysis
+SUBJECT=AS20-minimal
+DATE=03112025
+
+export ANALYSIS_PATH="$ANALYSIS_ROOT/$SUBJECT/$DATE"
+
 ./nextflow-25.04.6-dist -C geffenlab-phy-desktop/pipeline/main.config run geffenlab-phy-desktop/pipeline/main.nf
 ```

@@ -3,6 +3,7 @@ FROM ubuntu:22.04
 
 # Install wget and https certificate info, which we'll use to install things, below.
 # Install git for obtaining phy itself.
+# Install mesa-utils-extra libegl1-mesa for OpenGL support that Phy needs.
 # Clean up cache and temp files along the way.
 RUN export DEBIAN_FRONTEND=noninteractive \
     && apt update \

@@ -1,27 +1,31 @@
 println "params: ${params}"
 
 process geffenlab_phy_desktop {
-	tag 'geffenlab_phy_desktop'
-	container "ghcr.io/benjamin-heasly/geffenlab-phy-desktop:${params.container_tag}"
+    tag 'geffenlab_phy_desktop'
+    container 'geffenlab/geffenlab-phy-desktop:local'
 
     input:
-    path exported_path
-    
+    path analysis_path
+
     output:
     path 'results/*', emit: results
 
-    publishDir "${params.results_path}",mode: "copy", overwrite: true, pattern: "results/*", saveAs: { filename -> file(filename).name }
+    publishDir "${params.analysis_path}/curated",
+        mode: 'copy',
+        overwrite: true,
+        pattern: 'results/*',
+        saveAs: { filename -> file(filename).name }
 
-	script:
-	"""
-	#!/usr/bin/env bash
-	set -e
+    script:
+    """
+    #!/usr/bin/env bash
+    set -e
     mkdir -p results
-    conda_run python /opt/code/run.py --data-root $exported_path --results-root results
-	"""
+    conda_run python /opt/code/run_phy.py --data-root $analysis_path/exported --results-root results $params.interactive
+    """
 }
 
 workflow {
-    def data = channel.fromPath(params.exported_path)
-	geffenlab_phy_desktop(data)
+    def analysis_channel = channel.fromPath(params.analysis_path)
+    geffenlab_phy_desktop(analysis_channel)
 }

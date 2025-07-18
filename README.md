@@ -15,16 +15,19 @@ mkdir ./results
 
 docker run -ti --rm -u $(id -u):$(id -g) -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $PWD/phy-data-master:/phy-data-master -v $PWD/results:/results geffenlab/ecephys-phy-desktop:local
 
-conda_run python /opt/code/run.py --data-root /phy-data-master/ --phy-pattern template/
+conda_run python /opt/code/run_phy.py --data-root /phy-data-master/ --phy-pattern template/
 ```
 
 ```
 ANALYSIS_ROOT=/home/ninjaben/codin/geffen-lab-data/analysis
 SUBJECT=AS20-minimal
 DATE=03112025
-export EXPORTED_PATH="$ANALYSIS_ROOT/$SUBJECT/$DATE/exported"
-export RESULTS_PATH="$ANALYSIS_ROOT/$SUBJECT/$DATE/curated"
-mkdir -p "$RESULTS_PATH"
 
-docker run -ti --rm -u $(id -u):$(id -g) -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $EXPORTED_PATH:/data -v $RESULTS_PATH:/results ghcr.io/benjamin-heasly/geffenlab-phy-desktop:v0.0.0 conda_run python /opt/code/run.py
+export ANALYSIS_PATH="$ANALYSIS_ROOT/$SUBJECT/$DATE"
+
+docker run -ti --rm -u $(id -u):$(id -g) -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -v $ANALYSIS_PATH:/analysis geffenlab/geffenlab-phy-desktop:local conda_run python /opt/code/run_phy.py --data-root /analysis/exported --results-root /analysis/curated
+```
+
+```
+./nextflow-25.04.6-dist -C geffenlab-phy-desktop/pipeline/main.config run geffenlab-phy-desktop/pipeline/main.nf
 ```

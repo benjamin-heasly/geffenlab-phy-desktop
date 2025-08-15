@@ -82,7 +82,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         "--params-py-pattern", "-p",
         type=str,
         help="Glob pattern to locate a Phy params.py file within DATA_ROOT. (default: %(default)s)",
-        default="phy/**/params.py"
+        default="**/params.py"
     )
     parser.add_argument(
         "--temp-root", "-t",
